@@ -8,7 +8,7 @@ import cat.helm.basearchitecture.repository.SomethingRepository
  */
 class SomethingDataRepository: SomethingRepository {
 
-    override fun getSomething(): Result {
+    override fun getSomething(): Result<String> {
         return Result.Success("hi")
     }
 }

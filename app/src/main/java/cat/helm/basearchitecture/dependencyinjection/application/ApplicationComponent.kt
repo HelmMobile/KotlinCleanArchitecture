@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.dependencyinjection.application
 
 import android.app.Application
-import cat.helm.basearchitecture.data.DataModule
+import cat.helm.basearchitecture.data.dependencyinjection.DataModule
 import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
 import cat.helm.basearchitecture.dependencyinjection.activity.ActivityModule
 import cat.helm.basearchitecture.dependencyinjection.activity.ViewModule
