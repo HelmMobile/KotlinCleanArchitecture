@@ -1,9 +1,10 @@
 package cat.helm.basearchitecture.dependencyinjection.activity
 
 import android.content.Context
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.ActivityContext
+import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 
 /**
  * Created by Borja on 21/12/16.
@@ -12,13 +13,10 @@ import javax.inject.Named
 @Module
 class ActivityModule(val activity: Context) {
 
-    companion object{
-        const val ACTIVITY_CONTEXT = "activityContext"
-    }
-
 
     @Provides
-    @Named(ACTIVITY_CONTEXT)
+    @PerActivity
+    @ActivityContext
     fun providesActivityContext() = activity
 
 

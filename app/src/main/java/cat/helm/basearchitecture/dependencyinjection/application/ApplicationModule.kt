@@ -3,9 +3,9 @@ package cat.helm.basearchitecture.dependencyinjection.application
 import android.content.Context
 import cat.helm.basearchitecture.UiThread
 import cat.helm.basearchitecture.async.PostExecutionThread
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.ApplicationContext
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -14,13 +14,11 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(val application: Context) {
 
-    companion object{
-        const val APPLICATION_CONTEXT = "appContext"
-    }
+
 
     @Provides
     @Singleton
-    @Named("APPLICATION_CONTEXT")
+    @ApplicationContext
     fun provideApplicationContext() = application
 
     @Provides
