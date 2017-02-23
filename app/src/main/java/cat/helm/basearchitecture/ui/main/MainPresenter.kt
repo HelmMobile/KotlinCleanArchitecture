@@ -9,13 +9,13 @@ import javax.inject.Inject
  */
 class MainPresenter
     @Inject constructor(val view: MainView,
-                        val mao: GetSomethingInteractor) {
+                        val getSomethingInteractor: GetSomethingInteractor) {
 
     fun changeTextButtonPressed() {
-        mao.execute{
+        getSomethingInteractor.execute{
             result ->
             when(result){
-                is Result.Success<*> -> view.changeText(result.result as String)
+                is Result.Success<String> -> view.changeText(result.result)
                 is Result.Error -> view.changeText("error")
             }
         }

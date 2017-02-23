@@ -1,5 +1,6 @@
-package cat.helm.basearchitecture.data
+package cat.helm.basearchitecture.data.dependencyinjection
 
+import cat.helm.basearchitecture.data.SomethingDataRepository
 import cat.helm.basearchitecture.repository.SomethingRepository
 import dagger.Module
 import dagger.Provides
