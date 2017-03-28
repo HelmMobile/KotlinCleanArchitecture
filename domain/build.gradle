@@ -20,7 +20,7 @@ kapt {
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 buildscript {
-    ext.kotlin_version = '1.0.6'
+    ext.kotlin_version = '1.1.1'
     repositories {
         mavenCentral()
     }
