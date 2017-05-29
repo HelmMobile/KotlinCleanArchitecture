@@ -1,9 +1,11 @@
-package cat.helm.basearchitecture.data.repository
+package cat.helm.ureentool.data.repository
 
+import cat.helm.basearchitecture.Result
 import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource
 import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.datasource.WritableDataSource
 import cat.helm.basearchitecture.data.repository.policy.ReadPolicy
+import cat.helm.basearchitecture.data.repository.policy.WritePolicy
 import java.util.*
 
 /**
@@ -17,132 +19,179 @@ open class Repository<Key, Value> {
     val cacheDataSources = ArrayList<CacheDataSource<Key, Value>>()
 
 
-    fun getByKey(key: Key, policy: ReadPolicy = ReadPolicy.READ_ALL): Value? {
-        var value: Value? = null
+    fun getByKey(key: Key, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Value, Exception> {
+        var result: Result<Value, Exception> = Result.Failure()
 
         if (policy.useCache()) {
-            value = getValueFromCacheDataSources(key)
+            result = getValueFromCacheDataSources(key)
 
         }
-        if (value == null && policy.useReadable()) {
-            value = getValueFromReadableDataSources(key)
+        result.failure {
+            if (policy.useReadable()) {
+                result = getValueFromReadableDataSources(key)
+            }
         }
 
-        if (value != null) {
+        result.success {
+            result ->
+            populateCaches(result)
+        }
+
+        return result
+    }
+
+
+    fun getAll(policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Collection<Value>, *> {
+        var result: Result<Collection<Value>, *> = Result.Failure()
+
+        if (policy.useCache()) {
+            result = getValuesFromCacheDataSources()
+
+        }
+
+        result.failure {
+            if (policy.useReadable()) {
+                result = getValuesFromReadableDataSources()
+            }
+        }
+
+        result.success {
+            value ->
             populateCaches(value)
         }
 
-
-
-        return value
+        return result
     }
 
+    fun addOrUpdate(value: Value, policy: WritePolicy = WritePolicy.WRITE_ALL): Result<Value, *> {
 
-    fun getAll(policy: ReadPolicy = ReadPolicy.READ_ALL): Collection<Value>? {
-        var values: Collection<Value>? = null
-
-        if (policy.useCache()) {
-            values = getValuesFromCacheDataSources()
-
-        }
-
-        if (values == null && policy.useReadable()) {
-            values = getValuesFromReadableDataSources()
-        }
-        if (values != null) {
-            populateCaches(values)
-        }
-
-        return values
-    }
-
-    fun addOrUpdate(value: Value) {
-
-        var updatedValue: Value? = null
+        var result: Result<Value, Exception> = Result.Failure()
 
         writableDataSources.forEach {
             writableDataSource ->
+            result = writableDataSource.addOrUpdate(value)
+        }
 
-            updatedValue = writableDataSource.addOrUpdate(value)
+
+        result.success {
+            value ->
+            populateCaches(value)
         }
-        updatedValue?.let {
-            populateCaches(updatedValue!!)
+
+        if (policy.writeCache()) {
+            populateCaches(value)
         }
+
+        return result
     }
 
-    fun addOrUpdateAll(values: Collection<Value>) {
-        var updatedValues: Collection<Value>? = null
+    fun addOrUpdateAll(values: Collection<Value>): Result<Collection<Value>, *> {
+        var result: Result<Collection<Value>, *> = Result.Failure()
+
         writableDataSources.forEach {
             writableDataSource ->
+            result = writableDataSource.addOrUpdateAll(values)
+        }
 
-            updatedValues = writableDataSource.addOrUpdateAll(values)
+        result.success {
+            value ->
+            populateCaches(value)
         }
-        updatedValues?.let {
-            populateCaches(updatedValues!!)
-        }
+
+        return result
     }
 
-    fun deleteByKey(key: Key){
+    fun deleteByKey(key: Key): Result<Unit, *> {
+        var result: Result<Unit, Exception> = Result.Failure()
+
         writableDataSources.forEach {
             writableDataSource ->
-                writableDataSource.deleteByKey(key)
+            result = writableDataSource.deleteByKey(key)
         }
         cacheDataSources.forEach {
             cacheDataSource ->
-                cacheDataSource.deleteByKey(key)
+            result = cacheDataSource.deleteByKey(key)
         }
+
+        return result
     }
 
-    fun deleteAll(){
-        writableDataSources.forEach(WritableDataSource<Key, Value>::deleteAll)
-        cacheDataSources.forEach(CacheDataSource<Key,Value>::deleteAll)
+    fun deleteAll(): Result<Unit, *> {
+        var result: Result<Unit, *> = Result.Failure()
+
+        writableDataSources.forEach {
+            writableDataSource ->
+            result = writableDataSource.deleteAll()
+        }
+        cacheDataSources.forEach {
+            cacheDataSource ->
+            result = cacheDataSource.deleteAll()
+        }
+        return result
     }
 
 
-    fun <Key, Value> Repository<Key, Value>.query(query: Class<*>,parameters: HashMap<String,*>? = null,policy: ReadPolicy = ReadPolicy.READ_ALL): Value? {
-        var value: Value? = null
+    fun query(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Value, *> {
+        var result: Result<Value, *> = Result.Failure()
+
         if (policy.useCache()) {
-            cacheDataSources.forEach {
-                cacheDataSource ->
-                value = cacheDataSource.query(query,parameters)
+
+            for (cacheDataSource in cacheDataSources) {
+                result = cacheDataSource.query(query, parameters)
+                if (result.isSuccess()) {
+                    break
+                }
             }
         }
 
-        if(value == null && policy.useReadable()){
-            readableDataSources.forEach {
-                readableDataSource ->
-                value = readableDataSource.query(query,parameters)
+        result.failure {
+            if (policy.useReadable()) {
+                for (readableDataSource in readableDataSources) {
+                    result = readableDataSource.query(query, parameters)
+                    if (result.isSuccess()) {
+                        break
+                    }
+                }
             }
         }
 
-        value?.let {
-            populateCaches(value!!)
+        result.success {
+            value ->
+            populateCaches(value)
         }
 
-        return value
+        return result
     }
 
-    fun <Key, Value> Repository<Key, Value>.queryAll(query: Class<*>,parameters: HashMap<String,*>? = null,policy: ReadPolicy = ReadPolicy.READ_ALL): Collection<Value>? {
-        var values: Collection<Value>? = null
+    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Collection<Value>, *> {
+        var result: Result<Collection<Value>, *> = Result.Failure()
         if (policy.useCache()) {
-            cacheDataSources.forEach {
-                cacheDataSource ->
-                values = cacheDataSource.queryAll(query,parameters)
+            for (cacheDataSource in cacheDataSources) {
+                result = cacheDataSource.queryAll(query, parameters)
+                if (result.isSuccess()) {
+                    break
+                }
             }
         }
 
-        if(values == null && policy.useReadable()){
-            readableDataSources.forEach {
-                readableDataSource ->
-                values = readableDataSource.queryAll(query,parameters)
+        result.failure {
+            if (policy.useReadable()) {
+                for (readableDataSource in readableDataSources) {
+                    result = readableDataSource.queryAll(query, parameters)
+                    if (result.isSuccess()) {
+                        break
+                    }
+
+                }
             }
         }
 
-        values?.let {
-            populateCaches(values!!)
+        result.success {
+            value ->
+            populateCaches(value)
         }
 
-        return values
+        return result
     }
 
 
@@ -162,70 +211,69 @@ open class Repository<Key, Value> {
         }
     }
 
-    private fun getValuesFromCacheDataSources(
-
-
-
-    ): Collection<Value>? {
-        var values: Collection<Value>? = null
+    private fun getValuesFromCacheDataSources(): Result<Collection<Value>, *> {
+        var result: Result<Collection<Value>, *> = Result.Failure()
 
         cacheDataSources.forEach {
-
             cacheDataSource ->
 
-            values = cacheDataSource.getAll()
-            values?.let {
-                if (areValidValues(values, cacheDataSource)) {
-                    return@forEach
+            result = cacheDataSource.getAll()
+            result.success {
+                value ->
+                if (areValidValues(value, cacheDataSource)) {
+                    return result
                 } else {
                     cacheDataSource.deleteAll()
-                    values = null
+                    result = Result.Failure()
                 }
             }
         }
-        return values
+        return result
     }
 
-    private fun getValueFromReadableDataSources(key: Key): Value? {
-        var value: Value? = null
+    private fun getValueFromReadableDataSources(key: Key): Result<Value, *> {
+        var result: Result<Value, *> = Result.Failure()
         readableDataSources.forEach {
             readableDataSource ->
-            value = readableDataSource.getByKey(key)
-            value?.let {
-                return@forEach
+            result = readableDataSource.getByKey(key)
+            result.success {
+                return result
             }
         }
-        return value
+        return result
     }
 
-    private fun getValueFromCacheDataSources(key: Key): Value? {
-        var value: Value? = null
+    private fun getValueFromCacheDataSources(key: Key): Result<Value, *> {
+        var result: Result<Value, *> = Result.Failure()
         cacheDataSources.forEach {
             cacheDataSource ->
 
-            value = cacheDataSource.getByKey(key)
-            value?.let {
-                if (cacheDataSource.isValid(value!!)) {
-                    return@forEach
+            result = cacheDataSource.getByKey(key)
+            result.success {
+                value ->
+                if (cacheDataSource.isValid(value)) {
+                    return result
                 } else {
                     cacheDataSource.deleteByKey(key)
-                    value = null
+                    result = Result.Failure()
                 }
             }
+
+
         }
-        return value
+        return result
     }
 
-    private fun getValuesFromReadableDataSources(): Collection<Value>? {
-        var values: Collection<Value>? = null
+    private fun getValuesFromReadableDataSources(): Result<Collection<Value>, *> {
+        var result: Result<Collection<Value>, *> = Result.Failure()
         readableDataSources.forEach {
             readableDataSource ->
-            values = readableDataSource.getAll()
-            values?.let {
-                return@forEach
+            result = readableDataSource.getAll()
+            result.success {
+                return result
             }
         }
-        return values
+        return result
     }
 
     private fun areValidValues(values: Collection<Value>?, cacheDataSource: CacheDataSource<Key, Value>): Boolean {

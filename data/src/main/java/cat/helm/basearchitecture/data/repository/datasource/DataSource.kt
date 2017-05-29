@@ -1,5 +1,6 @@
 package cat.helm.basearchitecture.data.repository.datasource
 
+import cat.helm.basearchitecture.Result
 import cat.helm.basearchitecture.data.repository.implements
 import cat.helm.basearchitecture.data.repository.query.Query
 
@@ -13,45 +14,45 @@ interface CacheDataSource<in Key, Value> : ReadableDataSource<Key, Value>, Writa
 
 interface WritableDataSource<in Key, Value> {
 
-    fun deleteByKey(key: Key)
+    fun deleteByKey(key: Key): Result<Unit,*>
 
-    fun deleteAll()
+    fun deleteAll(): Result<Unit,*>
 
-    fun addOrUpdate(value: Value): Value
+    fun addOrUpdate(value: Value): Result<Value,*>
 
-    fun addOrUpdateAll(values: Collection<Value>): Collection<Value>
+    fun addOrUpdateAll(values: Collection<Value>): Result<Collection<Value>,*>
 }
 
 interface ReadableDataSource<in Key, out Value> {
 
-    val queries: Set<Query<*>>
+    val queries: Set<Query>
 
-    fun getByKey(key: Key): Value? {
-        return null
+    fun getByKey(key: Key): Result<Value,*> {
+        return Result.Failure()
     }
 
-    fun getAll(): Collection<Value>? {
-        return null
+    fun getAll(): Result<Collection<Value>, *> {
+        return Result.Failure()
     }
 
-    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null): Collection<Value>? {
+    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Collection<Value>,*> {
         queries.forEach {
             possibleQuery ->
             if (possibleQuery.implements(query)) {
-                return possibleQuery.queryAll(parameters) as Collection<Value>?
+                return possibleQuery.queryAll(parameters) as Result<Collection<Value>,*>
             }
         }
-        return null
+        return Result.Failure()
     }
 
-    fun query(query: Class<*>, parameters: HashMap<String, *>? = null): Value? {
+    fun query(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Value,*> {
         queries.forEach {
             possibleQuery ->
             if (possibleQuery.implements(query)) {
-                return possibleQuery.query(parameters) as Value?
+                return possibleQuery.query(parameters) as Result<Value, *>
             }
         }
-        return null
+        return Result.Failure()
     }
 
 }
