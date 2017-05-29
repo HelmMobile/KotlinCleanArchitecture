@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh './gradlew clean assembleDebug -PBUILD_NUMBER=${env.BUILD_NUMBER}'
+                sh "./gradlew clean assembleDebug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
             }
         }
         stage('Test') {
