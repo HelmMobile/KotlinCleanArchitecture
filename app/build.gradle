@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "cat.helm.basearchitecture"
         minSdkVersion 16
@@ -23,6 +23,9 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+    }
 }
 
 dependencies {
@@ -30,14 +33,13 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile "com.android.support:appcompat-v7:$support_version"
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.anko:anko-common:$anko_version"
 
     compile "com.google.dagger:dagger-android:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.12'
 
     compile project(path: ':domain')
     compile project(path: ':data')
