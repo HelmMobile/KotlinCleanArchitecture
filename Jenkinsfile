@@ -17,7 +17,7 @@ pipeline {
         always {
             archive 'app/build/outputs/apk/*.apk'
             junit 'data/build/test-results/**/*.xml'
-            lint 'app/build/reports/**/*.xml'
+            androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
         }
     }
 }
