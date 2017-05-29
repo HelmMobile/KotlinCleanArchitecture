@@ -24,7 +24,7 @@ node {
   stage 'Stage Archive'
   //tell Jenkins to archive the apks
   archiveArtifacts artifacts: 'app/build/outputs/apk/*.apk', fingerprint: true
-  archiveTests test: 'build/reports/**/*.html',  fingerprint: true
+  junit test: 'build/reports/**/*.html',  fingerprint: true
   //stage 'Stage Upload To Fabric'
   //sh "./gradlew crashlyticsUploadDistributionDebug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
 }
