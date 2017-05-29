@@ -16,7 +16,7 @@ pipeline {
     post {
         always {
             archive 'app/build/outputs/apk/*.apk'
-            junit 'data/build/reports/**/*.html'
+            junit 'data/build/test-results/**/*.xml'
         }
     }
 }
