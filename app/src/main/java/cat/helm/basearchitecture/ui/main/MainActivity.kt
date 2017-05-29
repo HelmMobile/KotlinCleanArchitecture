@@ -1,6 +1,7 @@
 package cat.helm.basearchitecture.ui.main
 
 import cat.helm.basearchitecture.R
+import cat.helm.basearchitecture.Result
 import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
 import cat.helm.basearchitecture.ui.base.BaseActivity
 import cat.helm.basearchitecture.ui.second.SecondaryActivity
@@ -17,6 +18,7 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun onRequestLayout(): Int {
+        var mao = Result.Failure()
         return R.layout.activity_main
     }
 

@@ -31,7 +31,7 @@ class DataModule {
     @Provides
     @Singleton
     fun providesSomethingDataRepository(query: QuerySomethingFake): SomethingDataSource{
-        val queries = HashSet<Query<*>>()
+        val queries = HashSet<Query>()
         queries.add(query)
         return SomethingDataSource(queries)
     }

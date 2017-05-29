@@ -1,5 +1,7 @@
 package cat.helm.basearchitecture.data.repository.something.query
 
+import cat.helm.basearchitecture.Result
+import cat.helm.basearchitecture.Result.Success
 import javax.inject.Inject
 
 /**
@@ -7,12 +9,12 @@ import javax.inject.Inject
  */
 class QuerySomethingFake @Inject constructor() : QuerySomething {
 
-    override fun queryAll(parameters: HashMap<String, *>?): Collection<String> {
+    override fun queryAll(parameters: HashMap<String, *>?): Result<Collection<String>,*> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun query(parameters: HashMap<String, *>?): String {
-        return "Hello Cat"
+    override fun query(parameters: HashMap<String, *>?): Result<String,*> {
+        return Success("Hello Cat")
     }
 
 

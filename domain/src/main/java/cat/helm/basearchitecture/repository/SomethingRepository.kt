@@ -7,5 +7,5 @@ import cat.helm.basearchitecture.Result
  */
 interface SomethingRepository {
 
-    fun getSomething(): Result<String>
+    fun getSomething(): Result<String, Exception>
 }

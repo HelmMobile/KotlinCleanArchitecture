@@ -12,7 +12,7 @@ import javax.inject.Inject
 class GetSomethingInteractor @Inject constructor(val postExecutionThread: PostExecutionThread,
                                                  val repository: SomethingRepository) {
 
-    fun execute(delegate: (result: Result<String>) -> Unit) = doAsync {
+    fun execute(delegate: (result: Result<String, Exception>) -> Unit) = doAsync {
 
         val result = repository.getSomething()
 
