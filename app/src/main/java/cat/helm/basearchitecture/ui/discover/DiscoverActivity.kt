@@ -5,7 +5,8 @@ import cat.helm.basearchitecture.R
 import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_discover.tvShowList
+import cat.helm.basearchitecture.ui.detail.DetailActivity
+import kotlinx.android.synthetic.main.activity_discover.*
 import javax.inject.Inject
 
 class DiscoverActivity : BaseActivity(), DiscoverView {
@@ -29,4 +30,7 @@ class DiscoverActivity : BaseActivity(), DiscoverView {
         adapter.tvShows = tvShows
     }
 
+    override fun navigateToDetailActivity(id: Int) {
+        startActivity(DetailActivity.getIntent(id, this))
+    }
 }

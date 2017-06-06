@@ -1,5 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BaseArchitecture</string>
-    <string name="content_description_discover_image_view">TvShow Image</string>
-    <string name="baseImageUrl">https://image.tmdb.org/t/p/w500</string>
+    <string name="content_description_tv_show_image_view">TvShow Image</string>
+    <string name="baseImageUrl" tools:ignore="UnusedResources">https://image.tmdb.org/t/p/w500</string>
 </resources>

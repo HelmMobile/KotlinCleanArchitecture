@@ -1,13 +1,17 @@
 package cat.helm.basearchitecture.data.dependencyinjection
 
 import cat.helm.basearchitecture.data.entity.TvShowDataEntity
+import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource
 import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.query.Query
 import cat.helm.basearchitecture.data.repository.tvshow.TvShowApiDataSource
+import cat.helm.basearchitecture.data.repository.tvshow.TvShowCacheDataSource
 import cat.helm.basearchitecture.data.repository.tvshow.TvShowDataRepository
 import cat.helm.basearchitecture.repository.TvShowRepository
 import cat.helm.data.basearchitecture.BuildConfig
 import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.DefaultQueries
+import cat.helm.ureentool.data.repository.datasource.SystemTimeProvider
+import cat.helm.ureentool.data.repository.datasource.TimeProvider
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
@@ -31,12 +35,12 @@ class DataModule {
         return LinkedHashSet()
     }
 
-    @Provides
     @Singleton
-    fun providesRetrofit(): Retrofit {
+    @Provides
+    fun providesOkhttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        val interceptor = OkHttpClient.Builder()
+        return OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor {
                     chain ->
@@ -53,10 +57,15 @@ class DataModule {
                 }
 
                 .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesRetrofit(client: OkHttpClient): Retrofit {
 
         return Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org/3/")
-                .client(interceptor)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
@@ -68,5 +77,20 @@ class DataModule {
     @Provides
     @Singleton
     fun providesTvShowRepository(tvShowDataRepository: TvShowDataRepository): TvShowRepository = tvShowDataRepository
+
+    @Singleton
+    @Provides
+    fun providesTvShowCacheDataSource(tvShowCacheDataSource: TvShowCacheDataSource): CacheDataSource<Int, TvShowDataEntity> = tvShowCacheDataSource
+
+    @Provides
+    @Singleton
+    fun providesTTLCache(): Long {
+        return 60000
+    }
+    @Provides
+    @Singleton
+    fun providesTimeProvider(): TimeProvider {
+        return SystemTimeProvider()
+    }
 
 }
