@@ -21,6 +21,11 @@ class TvShowApiDataSource @Inject constructor(@DefaultQueries override val queri
         val tvShowService = retrofit.create(TvShowService::class.java)
         val response = tvShowService.getPopularTvShows().execute()
         return response.parseResponse("results")
+    }
 
+    override fun getByKey(key: Int): Result<TvShowDataEntity, *> {
+        val tvShowService = retrofit.create(TvShowService::class.java)
+        val response = tvShowService.getTvShowById(key).execute()
+        return response.parseResponse()
     }
 }

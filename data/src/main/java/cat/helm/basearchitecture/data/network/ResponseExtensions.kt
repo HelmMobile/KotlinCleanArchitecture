@@ -13,9 +13,15 @@ import retrofit2.Response
 
 inline fun <reified T> Response<JsonElement>.parseJsonResponse(jsonObject: String = ""): T {
     val gson = Gson()
-    val type = object : TypeToken<T>() {}.type
+    val type = object : TypeToken<T>(){}.type
 
-    val jsonResponse = this.body()?.asJsonObject?.get(jsonObject)
+    val jsonResponse : JsonElement?
+
+    if (jsonObject.isEmpty()) {
+        jsonResponse = this.body()
+    } else {
+        jsonResponse = this.body()?.asJsonObject?.get(jsonObject)
+    }
     val parsedResponse: T = gson.fromJson(jsonResponse, type)
     return parsedResponse
 

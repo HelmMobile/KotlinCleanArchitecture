@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 /**
  * Created by Borja on 2/6/17.
  */
-class TvShowAdapter @Inject constructor() : RecyclerView.Adapter<TvShowViewHolder>() {
+class TvShowAdapter @Inject constructor(val discoverPresenter: DiscoverPresenter) : RecyclerView.Adapter<TvShowViewHolder>() {
 
     var tvShows: List<TvShow> by Delegates.observable(emptyList()) {
         _, old, new->
@@ -30,7 +30,8 @@ class TvShowAdapter @Inject constructor() : RecyclerView.Adapter<TvShowViewHolde
     }
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
-        holder.bind(tvShows[position])
+
+        holder.bind(tvShows[position], discoverPresenter)
     }
 
     override fun getItemCount(): Int = tvShows.size
@@ -63,9 +64,12 @@ class TvShowAdapter @Inject constructor() : RecyclerView.Adapter<TvShowViewHolde
 }
 
 class TvShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    fun bind(tvShow: TvShow) {
+    fun bind(tvShow: TvShow, discoverPresenter: DiscoverPresenter) {
         itemView.tv_show_name.text = tvShow.name
         itemView.image.bind(itemView.context.getString(R.string.baseImageUrl) + tvShow.image)
+        itemView.setOnClickListener {
+            discoverPresenter.onTvShowPressed(tvShow.id)
+        }
     }
 
 }
