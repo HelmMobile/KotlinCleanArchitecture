@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.dependencyinjection.activity
 
 import cat.helm.basearchitecture.ui.base.BaseView
-import cat.helm.basearchitecture.ui.main.MainView
+import cat.helm.basearchitecture.ui.discover.DiscoverView
 import dagger.Module
 import dagger.Provides
 
@@ -11,6 +11,5 @@ import dagger.Provides
 @Module
 class ViewModule(val view: BaseView) {
 
-
-    @Provides fun providesMainView() = view as MainView
+    @Provides fun providesMainView() = view as DiscoverView
 }

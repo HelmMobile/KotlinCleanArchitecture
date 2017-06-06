@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BaseArchitecture</string>
+    <string name="content_description_discover_image_view">TvShow Image</string>
+    <string name="baseImageUrl">https://image.tmdb.org/t/p/w500</string>
 </resources>

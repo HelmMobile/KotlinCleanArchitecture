@@ -9,7 +9,7 @@ import cat.helm.basearchitecture.async.PostExecutionThread
  */
 class UiThread constructor(val handler: Handler = Handler(Looper.getMainLooper())) : PostExecutionThread
 {
-    override fun <T> submit(function: () -> T?){
+    override fun <T> submit(function: () -> T?) {
         handler.post {
             function.invoke()
         }

@@ -6,18 +6,15 @@ import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.datasource.WritableDataSource
 import cat.helm.basearchitecture.data.repository.policy.ReadPolicy
 import cat.helm.basearchitecture.data.repository.policy.WritePolicy
-import java.util.*
 
 /**
  * Created by Borja on 27/2/17.
  */
 open class Repository<Key, Value> {
 
-
     val writableDataSources = ArrayList<WritableDataSource<Key, Value>>()
     val readableDataSources = ArrayList<ReadableDataSource<Key, Value>>()
     val cacheDataSources = ArrayList<CacheDataSource<Key, Value>>()
-
 
     fun getByKey(key: Key, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Value, Exception> {
         var result: Result<Value, Exception> = Result.Failure()
@@ -39,7 +36,6 @@ open class Repository<Key, Value> {
 
         return result
     }
-
 
     fun getAll(policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Collection<Value>, *> {
         var result: Result<Collection<Value>, *> = Result.Failure()
@@ -71,7 +67,6 @@ open class Repository<Key, Value> {
             writableDataSource ->
             result = writableDataSource.addOrUpdate(value)
         }
-
 
         result.success {
             value ->
@@ -129,7 +124,6 @@ open class Repository<Key, Value> {
         }
         return result
     }
-
 
     fun query(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Value, *> {
         var result: Result<Value, *> = Result.Failure()
@@ -193,7 +187,6 @@ open class Repository<Key, Value> {
 
         return result
     }
-
 
     private fun populateCaches(value: Value) {
         cacheDataSources.forEach {
@@ -259,7 +252,6 @@ open class Repository<Key, Value> {
                 }
             }
 
-
         }
         return result
     }
@@ -284,6 +276,5 @@ open class Repository<Key, Value> {
         }
         return areValidValues
     }
-
 
 }

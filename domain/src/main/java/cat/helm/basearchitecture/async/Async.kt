@@ -9,9 +9,7 @@ import java.util.concurrent.Future
  * Created by Borja on 3/1/17.
  */
 
-
 class AsyncContext<T>(val executionThread: WeakReference<T>)
-
 
 fun <T> T.doAsync(
         exceptionHandler: ((Throwable) -> Unit)? = null,
@@ -51,7 +49,6 @@ fun <T> T.doAsync(
         }
     }
 }
-
 
 fun <T> T.onComplete(
         executorService: PostExecutionThread,

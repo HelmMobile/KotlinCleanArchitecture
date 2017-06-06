@@ -19,6 +19,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
+        }
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -38,6 +41,9 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "com.google.dagger:dagger-android:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     //test
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -49,3 +55,11 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+static def getApiKey(){
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('local.properties')))
+    return props['API_KEY']
+}
+
+

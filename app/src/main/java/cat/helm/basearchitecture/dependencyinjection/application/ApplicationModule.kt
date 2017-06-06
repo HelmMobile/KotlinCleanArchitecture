@@ -14,8 +14,6 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(val application: Context) {
 
-
-
     @Provides
     @Singleton
     @ApplicationContext
