@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.dependencyinjection.activity
 
 import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
-import cat.helm.basearchitecture.ui.main.MainActivity
+import cat.helm.basearchitecture.ui.discover.DiscoverActivity
 import dagger.Subcomponent
 
 /**
@@ -11,7 +11,6 @@ import dagger.Subcomponent
 @Subcomponent(modules = arrayOf(ActivityModule::class, ViewModule::class))
 interface ActivityComponent {
 
-
-    fun inject(activity: MainActivity)
+    fun inject(discoverActivity: DiscoverActivity)
 
 }

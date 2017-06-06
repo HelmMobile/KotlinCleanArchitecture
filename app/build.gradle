@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
@@ -22,9 +23,14 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+
     }
     lintOptions {
         disable 'GoogleAppIndexingWarning'
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
     }
 }
 
@@ -34,9 +40,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "com.android.support:appcompat-v7:$support_version"
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.anko:anko-common:$anko_version"
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
     compile "com.google.dagger:dagger-android:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -44,6 +50,9 @@ dependencies {
     compile project(path: ':domain')
     compile project(path: ':data')
 
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 }
 kapt {
     generateStubs = true
@@ -51,3 +60,7 @@ kapt {
 repositories {
     mavenCentral()
 }
+
+
+
+build.dependsOn ':detekt'

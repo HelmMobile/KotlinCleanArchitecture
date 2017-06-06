@@ -13,7 +13,6 @@ import cat.helm.basearchitecture.dependencyinjection.activity.ViewModule
 
 abstract class BaseActivity : AppCompatActivity(), BaseView {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(onRequestLayout())

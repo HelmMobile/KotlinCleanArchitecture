@@ -8,7 +8,6 @@ enum class ReadPolicy {
     READABLE_ONLY,
     READ_ALL;
 
-
     fun useCache(): Boolean {
         return this == CACHE_ONLY || this == READ_ALL
     }

@@ -9,7 +9,7 @@ import cat.helm.basearchitecture.dependencyinjection.application.DaggerApplicati
  * Created by Borja on 21/12/16.
  */
 class Application : Application() {
-    val component: ApplicationComponent by lazy{
+    val component: ApplicationComponent by lazy {
         DaggerApplicationComponent
                 .builder()
                 .applicationModule(ApplicationModule(this))

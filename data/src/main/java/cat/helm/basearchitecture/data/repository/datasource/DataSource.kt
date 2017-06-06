@@ -7,27 +7,27 @@ import cat.helm.basearchitecture.data.repository.query.Query
 /**
  * Created by Borja on 6/3/17.
  */
-interface CacheDataSource<in Key, Value> : ReadableDataSource<Key, Value>, WritableDataSource<Key, Value> {
+interface CacheDataSource<Key, Value> : ReadableDataSource<Key, Value>, WritableDataSource<Key, Value> {
 
     fun isValid(value: Value): Boolean
 }
 
-interface WritableDataSource<in Key, Value> {
+interface WritableDataSource<Key, Value> {
 
-    fun deleteByKey(key: Key): Result<Unit,*>
+    fun deleteByKey(key: Key): Result<Unit, *>
 
-    fun deleteAll(): Result<Unit,*>
+    fun deleteAll(): Result<Unit, *>
 
-    fun addOrUpdate(value: Value): Result<Value,*>
+    fun addOrUpdate(value: Value): Result<Value, *>
 
-    fun addOrUpdateAll(values: Collection<Value>): Result<Collection<Value>,*>
+    fun addOrUpdateAll(values: Collection<Value>): Result<Collection<Value>, *>
 }
 
-interface ReadableDataSource<in Key, out Value> {
+interface ReadableDataSource<Key, out Value> {
 
-    val queries: Set<Query>
+    val queries: MutableSet<Query>
 
-    fun getByKey(key: Key): Result<Value,*> {
+    fun getByKey(key: Key): Result<Value, *> {
         return Result.Failure()
     }
 
@@ -35,17 +35,17 @@ interface ReadableDataSource<in Key, out Value> {
         return Result.Failure()
     }
 
-    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Collection<Value>,*> {
+    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Collection<Value>, *> {
         queries.forEach {
             possibleQuery ->
             if (possibleQuery.implements(query)) {
-                return possibleQuery.queryAll(parameters) as Result<Collection<Value>,*>
+                return possibleQuery.queryAll(parameters) as Result<Collection<Value>, *>
             }
         }
         return Result.Failure()
     }
 
-    fun query(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Value,*> {
+    fun query(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Value, *> {
         queries.forEach {
             possibleQuery ->
             if (possibleQuery.implements(query)) {
