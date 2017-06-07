@@ -2,6 +2,7 @@ package cat.helm.basearchitecture.ui.discover
 
 import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
 import cat.helm.basearchitecture.interactor.GetAllPopularTvShows
+import cat.helm.basearchitecture.interactor.GetTvShowByName
 import javax.inject.Inject
 
 /**
@@ -10,7 +11,8 @@ import javax.inject.Inject
 
 @PerActivity
 class DiscoverPresenter @Inject constructor(val view: DiscoverView,
-                                            val getAllPopularTvShows: GetAllPopularTvShows) {
+                                            val getAllPopularTvShows: GetAllPopularTvShows,
+                                            val getTvShowByName: GetTvShowByName) {
     fun onStart() {
         getAllPopularTvShows.execute(Unit) {
             result ->
@@ -22,5 +24,14 @@ class DiscoverPresenter @Inject constructor(val view: DiscoverView,
 
     fun onTvShowPressed(id: Int) {
         view.navigateToDetailActivity(id)
+    }
+
+    fun onSearchTextSubmitted(queryText: String) {
+        getTvShowByName.execute(GetTvShowByName.Parameters(queryText)) {
+            result ->
+            result.success {
+                view.displayTvShow(it)
+            }
+        }
     }
 }

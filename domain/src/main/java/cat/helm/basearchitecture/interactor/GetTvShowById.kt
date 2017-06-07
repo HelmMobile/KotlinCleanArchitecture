@@ -9,11 +9,10 @@ import javax.inject.Inject
 /**
  * Created by Borja on 6/6/17.
  */
-class GetTvShowById @Inject constructor(postExecutionThread: PostExecutionThread, val tvShowRepository: TvShowRepository) : Interactor<TvShow, Parameters>(postExecutionThread) {
+class GetTvShowById @Inject constructor(postExecutionThread: PostExecutionThread, val tvShowRepository: TvShowRepository) : Interactor<TvShow, GetTvShowById.Parameters>(postExecutionThread) {
 
     override fun run(params: Parameters): Result<TvShow, *> = tvShowRepository.getTvShowById(params.id)
 
+    data class Parameters(val id: Int)
 }
-
-data class Parameters(val id: Int)
 

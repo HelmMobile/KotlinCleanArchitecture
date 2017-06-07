@@ -5,6 +5,7 @@ import cat.helm.basearchitecture.data.entity.TvShowDataEntity
 import cat.helm.basearchitecture.data.entity.mapToTvShow
 import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource
 import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
+import cat.helm.basearchitecture.data.repository.tvshow.query.GetTvShowByNameQuery
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.repository.TvShowRepository
 import cat.helm.ureentool.data.repository.Repository
@@ -25,4 +26,10 @@ class TvShowDataRepository @Inject constructor(tvShowApiDataSource: ReadableData
     override fun getAllPopularTvShows(): Result<List<TvShow>, *> = getAll().map { it.map(TvShowDataEntity::mapToTvShow) }
 
     override fun getTvShowById(id: Int): Result<TvShow, *> = getByKey(id).map(TvShowDataEntity::mapToTvShow)
+
+    override fun getTvShowByName(name: String): Result<List<TvShow>, *> {
+        val parameters = HashMap<String, String>()
+        parameters.put(GetTvShowByNameQuery.Parameters.NAME_QUERY, name)
+        return queryAll(GetTvShowByNameQuery::class.java, parameters).map { it.map(TvShowDataEntity::mapToTvShow) }
+    }
 }

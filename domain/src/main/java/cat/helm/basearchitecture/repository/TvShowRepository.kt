@@ -9,4 +9,5 @@ import cat.helm.basearchitecture.model.TvShow
 interface TvShowRepository {
     fun getAllPopularTvShows(): Result<List<TvShow>, *>
     fun getTvShowById(id: Int): Result<TvShow, *>
+    fun getTvShowByName(name: String): Result<List<TvShow>, *>
 }
