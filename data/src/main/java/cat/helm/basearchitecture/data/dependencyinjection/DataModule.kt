@@ -7,9 +7,11 @@ import cat.helm.basearchitecture.data.repository.query.Query
 import cat.helm.basearchitecture.data.repository.tvshow.TvShowApiDataSource
 import cat.helm.basearchitecture.data.repository.tvshow.TvShowCacheDataSource
 import cat.helm.basearchitecture.data.repository.tvshow.TvShowDataRepository
+import cat.helm.basearchitecture.data.repository.tvshow.query.GetTvShowByNameCacheQuery
 import cat.helm.basearchitecture.repository.TvShowRepository
 import cat.helm.data.basearchitecture.BuildConfig
 import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.DefaultQueries
+import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.TvShowCacheQueries
 import cat.helm.ureentool.data.repository.datasource.SystemTimeProvider
 import cat.helm.ureentool.data.repository.datasource.TimeProvider
 import dagger.Module
@@ -82,11 +84,17 @@ class DataModule {
     @Provides
     fun providesTvShowCacheDataSource(tvShowCacheDataSource: TvShowCacheDataSource): CacheDataSource<Int, TvShowDataEntity> = tvShowCacheDataSource
 
+    @Singleton
+    @Provides
+    @TvShowCacheQueries
+    fun providesTvShowCacheDataSourceQuery(getTvShowByNameCacheQuery: GetTvShowByNameCacheQuery): MutableSet<Query> = mutableSetOf(getTvShowByNameCacheQuery)
+
     @Provides
     @Singleton
     fun providesTTLCache(): Long {
         return 60000
     }
+
     @Provides
     @Singleton
     fun providesTimeProvider(): TimeProvider {

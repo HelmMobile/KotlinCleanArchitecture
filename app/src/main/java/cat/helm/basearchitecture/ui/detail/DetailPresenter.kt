@@ -1,7 +1,6 @@
 package cat.helm.basearchitecture.ui.detail
 
 import cat.helm.basearchitecture.interactor.GetTvShowById
-import cat.helm.basearchitecture.interactor.Parameters
 import javax.inject.Inject
 
 /**
@@ -10,7 +9,7 @@ import javax.inject.Inject
 class DetailPresenter @Inject constructor(val view: DetailView, val getTvShowById: GetTvShowById) {
 
     fun onStart(id: Int) {
-        getTvShowById.execute(Parameters(id)) {
+        getTvShowById.execute(GetTvShowById.Parameters(id)) {
             result ->
 
             result.success {

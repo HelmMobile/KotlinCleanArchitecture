@@ -13,7 +13,7 @@ import retrofit2.Response
 
 inline fun <reified T> Response<JsonElement>.parseJsonResponse(jsonObject: String = ""): T {
     val gson = Gson()
-    val type = object : TypeToken<T>(){}.type
+    val type = object : TypeToken<T>() {}.type
 
     val jsonResponse : JsonElement?
 
