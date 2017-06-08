@@ -8,4 +8,6 @@ import cat.helm.basearchitecture.model.TvShow
 interface DiscoverView {
     fun displayTvShow(it: List<TvShow>)
     fun navigateToDetailActivity(id: Int)
+    fun showException(exceptionMessage: String)
+
 }
