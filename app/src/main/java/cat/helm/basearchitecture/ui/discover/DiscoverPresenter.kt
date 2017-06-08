@@ -3,6 +3,7 @@ package cat.helm.basearchitecture.ui.discover
 import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
 import cat.helm.basearchitecture.interactor.GetAllPopularTvShows
 import cat.helm.basearchitecture.interactor.GetTvShowByName
+import cat.helm.ureentool.ui.base.ExceptionHandler
 import javax.inject.Inject
 
 /**
@@ -12,12 +13,17 @@ import javax.inject.Inject
 @PerActivity
 class DiscoverPresenter @Inject constructor(val view: DiscoverView,
                                             val getAllPopularTvShows: GetAllPopularTvShows,
-                                            val getTvShowByName: GetTvShowByName) {
+                                            val getTvShowByName: GetTvShowByName,
+                                            val exceptionHandler: ExceptionHandler) {
     fun onStart() {
         getAllPopularTvShows.execute(Unit) {
             result ->
             result.success {
                 view.displayTvShow(it)
+            }
+            result.failure {
+                exception ->
+                exceptionHandler.notifyException(exception)
             }
         }
     }

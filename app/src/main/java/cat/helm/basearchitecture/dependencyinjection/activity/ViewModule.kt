@@ -14,4 +14,5 @@ class ViewModule(val view: BaseView) {
 
     @Provides fun providesMainView() = view as DiscoverView
     @Provides fun providesDetailView() = view as DetailView
+    @Provides fun providesBaseView() = view
 }

@@ -1,6 +1,7 @@
 package cat.helm.basearchitecture.ui.base
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import cat.helm.basearchitecture.Application
 import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
@@ -30,4 +31,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     abstract fun injectActivity(component: ActivityComponent)
 
     abstract fun onViewLoaded()
+
+     override fun showException(exceptionMessage: String) {
+        Snackbar.make(findViewById(android.R.id.content), exceptionMessage, Snackbar.LENGTH_LONG).show()
+    }
+
 }
