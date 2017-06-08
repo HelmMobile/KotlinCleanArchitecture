@@ -23,6 +23,11 @@ android {
             it.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
         }
     }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+        abortOnError false
+    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
