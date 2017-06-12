@@ -20,9 +20,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        buildTypes.each {
-            it.buildConfigField "String", "API_KEY", "\""+getApiKey()+"\""
-        }
+
     }
     lintOptions {
         disable 'GoogleAppIndexingWarning'
@@ -66,8 +64,7 @@ repositories {
 
 static def getApiKey(){
     def Properties props = new Properties()
-
-    props.load(new FileInputStream(new File('local.properties')))
+    //props.load(new FileInputStream(new File('local.properties')))
     return props['API_KEY']
 }
 
