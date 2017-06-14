@@ -18,9 +18,10 @@ import kotlin.properties.Delegates
 class TvShowAdapter @Inject constructor(val discoverPresenter: DiscoverPresenter) : RecyclerView.Adapter<TvShowViewHolder>() {
 
     var tvShows: List<TvShow> by Delegates.observable(emptyList()) {
-        _, old, new->
+        _, old, new ->
         autoNotify(old, new) {
-            old, new -> old.id == new.id
+            old, new ->
+            old.id == new.id
         }
     }
 
@@ -42,13 +43,13 @@ class TvShowAdapter @Inject constructor(val discoverPresenter: DiscoverPresenter
 
             override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
 
-                return compare(oldList[oldItemPosition], newList[newItemPosition])
+                return oldList[oldItemPosition] == newList[newItemPosition]
 
             }
 
             override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
 
-                return oldList[oldItemPosition] == newList[newItemPosition]
+                return compare(oldList[oldItemPosition], newList[newItemPosition])
 
             }
 
