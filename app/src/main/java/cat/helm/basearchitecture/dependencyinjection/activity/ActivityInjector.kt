@@ -1,25 +1,18 @@
 package cat.helm.basearchitecture.dependencyinjection.activity
 
-import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
-import cat.helm.basearchitecture.ui.detail.DetailActivity
-import cat.helm.basearchitecture.ui.detail.DetailActivityModule
-import cat.helm.basearchitecture.ui.discover.DiscoverActivity
-import cat.helm.basearchitecture.ui.discover.DiscoverActivityModule
+import cat.helm.basearchitecture.ui.main.MainActivity
+import cat.helm.basearchitecture.ui.main.MainActivityModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 /**
- * Created by Héctor on 06/10/2017.
+ * Created by Borja on 17/7/17.
  */
+
 @Module
 abstract class ActivityInjector {
 
-    @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(DetailActivityModule::class))
-    abstract fun contributeDetailActivityInjector(): DetailActivity
-
-    @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(DiscoverActivityModule::class))
-    abstract fun contributeDiscoverActivityInjector(): DiscoverActivity
+    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
+    abstract fun contributeMainActivityInjector(): MainActivity
 
 }

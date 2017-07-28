@@ -60,8 +60,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
-kapt {
-    generateStubs = true
-}
 
 build.dependsOn ':detekt'

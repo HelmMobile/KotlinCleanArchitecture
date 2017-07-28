@@ -2,7 +2,6 @@ package cat.helm.basearchitecture.dependencyinjection.application
 
 import android.app.Application
 import android.content.Context
-import cat.helm.basearchitecture.data.dependencyinjection.qualifier.ApplicationContext
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,9 +14,5 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    @ApplicationContext
-    internal fun provideContext(application: Application): Context {
-        return application
-    }
-
+    internal fun provideContext(application: Application): Context =  application
 }

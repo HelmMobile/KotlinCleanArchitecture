@@ -1,10 +1,10 @@
 package cat.helm.basearchitecture.ui.base
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import dagger.android.AndroidInjection
-import org.jetbrains.anko.design.longSnackbar
+import android.view.View
 
 /**
  * Created by Borja on 21/12/16.
@@ -25,7 +25,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun showException(exceptionMessage: String) {
 
-        longSnackbar(findViewById<View>(android.R.id.content), exceptionMessage)
+        Snackbar.make(
+                findViewById<View>(android.R.id.content),
+                exceptionMessage,
+                Snackbar.LENGTH_LONG)
+                .show()
 
     }
 

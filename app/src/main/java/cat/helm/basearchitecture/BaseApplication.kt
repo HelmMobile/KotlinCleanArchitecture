@@ -2,12 +2,12 @@ package cat.helm.basearchitecture
 
 import android.app.Activity
 import android.app.Application
-
 import cat.helm.basearchitecture.dependencyinjection.application.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
+
 
 /**
  * Created by Borja on 21/12/16.
