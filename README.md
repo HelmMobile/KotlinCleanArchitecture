@@ -1,6 +1,6 @@
 # KotlinCleanArchitecture
 
-![Build Status](https://travis-ci.org/HelmMobile/KotlinCleanArchitecture.svg?branch=scafolding)
+![Build Status](https://travis-ci.org/HelmMobile/KotlinCleanArchitecture.svg?branch=master)
 
 ## Background
 
