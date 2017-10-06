@@ -39,8 +39,7 @@ sealed class Result<out Value, out Exception : kotlin.Exception> {
         infix inline fun <Value> of(executableFunction: () -> Value?): Result<Value, kotlin.Exception> {
             try {
                 val result = executableFunction()
-                result?.let {
-                    value ->
+                result?.let { value ->
                     return Success(value)
                 }
                 return Result.Failure()

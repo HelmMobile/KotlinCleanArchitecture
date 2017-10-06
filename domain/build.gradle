@@ -9,16 +9,12 @@ configurations {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
     compile "com.google.dagger:dagger:$dagger_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1'
-
-
-}
-kapt {
-    generateStubs = true
 }
 
 sourceCompatibility = "1.8"
