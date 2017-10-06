@@ -1,5 +1,7 @@
 # KotlinCleanArchitecture
 
+![Build Status](https://travis-ci.org/HelmMobile/KotlinCleanArchitecture.svg?branch=scafolding)
+
 ## Background
 
 We're a small team of curious developers who are always trying to evolve and improve. 
