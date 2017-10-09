@@ -1,4 +1,4 @@
-package cat.helm.ureentool.ui.base
+package cat.helm.basearchitecture.ui.exception
 
 /**
  * Created by Borja on 23/5/17.

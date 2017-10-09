@@ -1,4 +1,4 @@
-package cat.helm.ureentool.data.network
+package cat.helm.basearchitecture.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

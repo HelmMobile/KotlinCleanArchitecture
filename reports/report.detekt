@@ -1,3 +1,3 @@
-TooManyFunctions - 15/10 - [Repository.kt] - Line/Column=(1,1) - Path=data/src/main/java/cat/helm/basearchitecture/data/repository/Repository.kt - Signature=Repository.kt$cat.helm.ureentool.data.repository.Repository.kt
+TooManyFunctions - 15/10 - [Repository.kt] - Line/Column=(1,1) - Path=data/src/main/java/cat/helm/basearchitecture/data/repository/Repository.kt - Signature=Repository.kt$cat.helm.basearchitecture.data.repository.Repository.kt
 EmptyClassBlock - [<NoNameFound>] - Line/Column=(16,16) - Path=data/src/main/java/cat/helm/basearchitecture/data/network/ResponseExtensions.kt - Signature=ResponseExtensions.kt$<no name provided> : TypeToken
 NamingConventionViolation - [Failure] - Line/Column=(40,9) - Path=domain/src/main/java/cat/helm/basearchitecture/Result.kt - Signature=Result.kt$Result.Companion$fun Failure()

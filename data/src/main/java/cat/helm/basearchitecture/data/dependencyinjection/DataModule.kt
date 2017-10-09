@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.data.dependencyinjection
 
 import cat.helm.basearchitecture.data.repository.query.Query
-import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.DefaultQueries
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.DefaultQueries
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet

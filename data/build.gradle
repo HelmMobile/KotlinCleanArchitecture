@@ -59,10 +59,4 @@ repositories {
     mavenCentral()
 }
 
-static def getApiKey(){
-    def Properties props = new Properties()
-    //props.load(new FileInputStream(new File('local.properties')))
-    return props['API_KEY']
-}
-
 

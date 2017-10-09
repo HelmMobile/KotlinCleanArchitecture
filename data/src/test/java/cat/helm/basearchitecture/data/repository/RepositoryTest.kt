@@ -5,7 +5,6 @@ import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource
 import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.datasource.WritableDataSource
 import cat.helm.basearchitecture.data.repository.policy.ReadPolicy
-import cat.helm.ureentool.data.repository.Repository
 import com.nhaarman.mockito_kotlin.*
 import org.junit.Before
 import org.junit.Test

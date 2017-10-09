@@ -1,4 +1,4 @@
-package cat.helm.ureentool.data.repository.datasource
+package cat.helm.basearchitecture.data.repository.datasource
 
 import javax.inject.Inject
 

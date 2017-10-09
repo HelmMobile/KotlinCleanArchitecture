@@ -1,7 +1,6 @@
-package cat.helm.ureentool.data.repository.datasource
+package cat.helm.basearchitecture.data.repository.datasource
 
 import cat.helm.basearchitecture.Result
-import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource
 import cat.helm.basearchitecture.data.repository.query.Query
 import java.util.*
 
