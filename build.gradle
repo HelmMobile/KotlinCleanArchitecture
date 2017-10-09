@@ -3,7 +3,7 @@ apply from: 'detekt.gradle'
 
 buildscript {
     ext.kotlin_version = '1.1.51'
-    ext.anko_version = '0.9'
+    ext.anko_version = '0.10.1'
     ext.dagger_version = '2.11'
     ext.support_version = "26.1.0"
 
