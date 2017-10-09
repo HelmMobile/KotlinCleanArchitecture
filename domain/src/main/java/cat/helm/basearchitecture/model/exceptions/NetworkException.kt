@@ -1,4 +1,4 @@
-package cat.helm.ureentool.model.exceptions
+package cat.helm.basearchitecture.model.exceptions
 
 /**
  * Created by Borja on 19/5/17.

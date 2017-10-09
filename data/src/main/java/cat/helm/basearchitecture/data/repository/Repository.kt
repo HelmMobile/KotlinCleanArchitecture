@@ -1,4 +1,4 @@
-package cat.helm.ureentool.data.repository
+package cat.helm.basearchitecture.data.repository
 
 import cat.helm.basearchitecture.Result
 import cat.helm.basearchitecture.data.repository.datasource.CacheDataSource

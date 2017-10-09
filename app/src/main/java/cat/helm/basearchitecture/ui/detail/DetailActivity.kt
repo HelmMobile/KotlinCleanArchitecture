@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.TextView
 import cat.helm.basearchitecture.R
-import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.ui.base.BaseActivity
 import cat.helm.basearchitecture.ui.bind
@@ -27,9 +26,6 @@ class DetailActivity : BaseActivity(), DetailView {
 
     override fun onRequestLayout(): Int = R.layout.activity_detail
 
-    override fun injectActivity(component: ActivityComponent) {
-        component.inject(this)
-    }
 
     override fun onViewLoaded() {
         val id = intent.extras.getInt(TV_SHOW_ID)

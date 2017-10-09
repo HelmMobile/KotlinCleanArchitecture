@@ -10,10 +10,10 @@ import cat.helm.basearchitecture.data.repository.tvshow.TvShowDataRepository
 import cat.helm.basearchitecture.data.repository.tvshow.query.GetTvShowByNameCacheQuery
 import cat.helm.basearchitecture.repository.TvShowRepository
 import cat.helm.data.basearchitecture.BuildConfig
-import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.DefaultQueries
-import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.TvShowCacheQueries
-import cat.helm.ureentool.data.repository.datasource.SystemTimeProvider
-import cat.helm.ureentool.data.repository.datasource.TimeProvider
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.DefaultQueries
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.queries.TvShowCacheQueries
+import cat.helm.basearchitecture.data.repository.datasource.SystemTimeProvider
+import cat.helm.basearchitecture.data.repository.datasource.TimeProvider
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet

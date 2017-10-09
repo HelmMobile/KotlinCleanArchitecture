@@ -1,4 +1,4 @@
-package cat.helm.ureentool.data.dependencyinjection.qualifier.queries
+package cat.helm.basearchitecture.data.dependencyinjection.qualifier.queries
 
 /**
  * Created by Borja on 3/4/17.

@@ -1,12 +1,12 @@
 package cat.helm.basearchitecture.data.repository.tvshow
 
 import cat.helm.basearchitecture.Result
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.queries.TvShowCacheQueries
 import cat.helm.basearchitecture.data.entity.TvShowDataEntity
+import cat.helm.basearchitecture.data.repository.datasource.InMemoryCacheDataSource
+import cat.helm.basearchitecture.data.repository.datasource.TimeProvider
 import cat.helm.basearchitecture.data.repository.implements
 import cat.helm.basearchitecture.data.repository.query.Query
-import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.TvShowCacheQueries
-import cat.helm.ureentool.data.repository.datasource.InMemoryCacheDataSource
-import cat.helm.ureentool.data.repository.datasource.TimeProvider
 import javax.inject.Inject
 
 /**

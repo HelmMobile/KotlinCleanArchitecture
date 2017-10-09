@@ -7,9 +7,9 @@ import cat.helm.basearchitecture.data.network.TvShowService
 import cat.helm.basearchitecture.data.network.parseResponse
 import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.query.Query
-import cat.helm.ureentool.data.dependencyinjection.qualifier.queries.DefaultQueries
-import cat.helm.ureentool.data.network.ConnectionChecker
-import cat.helm.ureentool.model.exceptions.NetworkException.NoInternetConnection
+import cat.helm.basearchitecture.data.dependencyinjection.qualifier.DefaultQueries
+import cat.helm.basearchitecture.data.network.ConnectionChecker
+import cat.helm.basearchitecture.model.exceptions.NetworkException.NoInternetConnection
 import retrofit2.Retrofit
 import javax.inject.Inject
 

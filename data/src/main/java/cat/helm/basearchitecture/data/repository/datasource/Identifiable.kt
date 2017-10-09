@@ -1,4 +1,4 @@
-package cat.helm.ureentool.data.repository.datasource
+package cat.helm.basearchitecture.data.repository.datasource
 
 /**
  * Created by Borja on 30/3/17.
