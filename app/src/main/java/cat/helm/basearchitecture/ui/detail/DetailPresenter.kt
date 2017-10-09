@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.ui.detail
 
 import cat.helm.basearchitecture.interactor.GetTvShowById
-import cat.helm.ureentool.ui.base.SimpleExceptionHandler
+import cat.helm.basearchitecture.ui.base.SimpleExceptionHandler
 import javax.inject.Inject
 
 /**

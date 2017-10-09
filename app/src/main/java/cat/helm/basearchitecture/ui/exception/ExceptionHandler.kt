@@ -1,4 +1,4 @@
-package cat.helm.ureentool.ui.base
+package cat.helm.basearchitecture.ui.exception
 
 import cat.helm.basearchitecture.ui.base.BaseView
 

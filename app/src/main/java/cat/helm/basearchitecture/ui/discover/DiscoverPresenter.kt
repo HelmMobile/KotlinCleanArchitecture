@@ -3,7 +3,7 @@ package cat.helm.basearchitecture.ui.discover
 import cat.helm.basearchitecture.dependencyinjection.scope.PerActivity
 import cat.helm.basearchitecture.interactor.GetAllPopularTvShows
 import cat.helm.basearchitecture.interactor.GetTvShowByName
-import cat.helm.ureentool.ui.base.SimpleExceptionHandler
+import cat.helm.basearchitecture.ui.exception.SimpleExceptionHandler
 import javax.inject.Inject
 
 /**

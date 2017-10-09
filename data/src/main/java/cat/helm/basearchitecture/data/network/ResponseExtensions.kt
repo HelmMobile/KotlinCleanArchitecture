@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.data.network
 
 import cat.helm.basearchitecture.Result
-import cat.helm.ureentool.model.exceptions.NetworkException
+import cat.helm.basearchitecture.model.exceptions.NetworkException
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken

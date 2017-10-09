@@ -8,7 +8,7 @@ import cat.helm.basearchitecture.data.repository.datasource.ReadableDataSource
 import cat.helm.basearchitecture.data.repository.tvshow.query.GetTvShowByNameQuery
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.repository.TvShowRepository
-import cat.helm.ureentool.data.repository.Repository
+import cat.helm.basearchitecture.data.repository.Repository
 import javax.inject.Inject
 
 /**

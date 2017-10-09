@@ -1,6 +1,6 @@
 package cat.helm.basearchitecture.data.entity
 
-import cat.helm.ureentool.data.repository.datasource.Identifiable
+import cat.helm.basearchitecture.data.repository.datasource.Identifiable
 
 /**
  * Created by Borja on 1/6/17.
