@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.ui.detail
 
 import cat.helm.basearchitecture.interactor.GetTvShowById
-import cat.helm.ureentool.ui.base.ExceptionHandler
+import cat.helm.ureentool.ui.base.SimpleExceptionHandler
 import javax.inject.Inject
 
 /**
@@ -9,7 +9,7 @@ import javax.inject.Inject
  */
 class DetailPresenter @Inject constructor(val view: DetailView,
                                           val getTvShowById: GetTvShowById,
-                                          val exceptionHandler: ExceptionHandler) {
+                                          val exceptionHandler: SimpleExceptionHandler) {
 
     fun onStart(id: Int) {
         getTvShowById.execute(GetTvShowById.Parameters(id)) {
@@ -17,13 +17,13 @@ class DetailPresenter @Inject constructor(val view: DetailView,
 
             result.success {
                 tvShow ->
-               view.showTvShow(tvShow)
+                view.showTvShow(tvShow)
             }
 
             result.failure {
                 exception ->
 
-                exceptionHandler.notifyException(exception)
+                exceptionHandler.notifyException(view,exception)
             }
         }
     }

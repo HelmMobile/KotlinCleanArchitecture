@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import cat.helm.basearchitecture.R
-import cat.helm.basearchitecture.dependencyinjection.activity.ActivityComponent
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.ui.base.BaseActivity
 import cat.helm.basearchitecture.ui.detail.DetailActivity
@@ -22,9 +21,6 @@ class DiscoverActivity : BaseActivity(), DiscoverView {
 
     override fun onRequestLayout(): Int = R.layout.activity_discover
 
-    override fun injectActivity(component: ActivityComponent) {
-        component.inject(this)
-    }
 
     override fun onViewLoaded() {
         presenter.onStart()
