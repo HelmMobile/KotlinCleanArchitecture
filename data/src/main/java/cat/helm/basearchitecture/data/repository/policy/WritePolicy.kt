@@ -7,8 +7,6 @@ enum class WritePolicy {
     WRITE_CACHE_ONLY,
     WRITE_ALL;
 
-    fun writeCache(): Boolean {
-        return this == WRITE_CACHE_ONLY
-    }
+    fun writeCache(): Boolean = this == WRITE_CACHE_ONLY
 
 }

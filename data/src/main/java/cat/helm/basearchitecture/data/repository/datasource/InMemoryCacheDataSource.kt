@@ -7,7 +7,9 @@ import java.util.*
 /**
  * A simple and generic in-memory cache ready to use in your repositories.
  */
-open class InMemoryCacheDataSource<Key, Value : Identifiable<Key>>(val timeProvider: TimeProvider, val ttlInMillis: Long, override val queries: MutableSet<Query>) : CacheDataSource<Key, Value> {
+open class InMemoryCacheDataSource<Key, Value :
+Identifiable<Key>>(val timeProvider: TimeProvider, val ttlInMillis: Long, override val queries: MutableSet<Query>)
+    : CacheDataSource<Key, Value> {
 
     var lastItemsUpdate: Long = 0
     val items: MutableMap<Key, Value> = LinkedHashMap()
@@ -33,8 +35,7 @@ open class InMemoryCacheDataSource<Key, Value : Identifiable<Key>>(val timeProvi
     override fun addOrUpdateAll(values: Collection<Value>): Result<Collection<Value>, Exception> {
         return Result.of {
             synchronized(this) {
-                values.forEach {
-                    value ->
+                values.forEach { value ->
                     addOrUpdate(value)
                 }
 

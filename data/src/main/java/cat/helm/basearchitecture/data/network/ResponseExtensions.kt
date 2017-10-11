@@ -15,32 +15,27 @@ inline fun <reified T> Response<JsonElement>.parseJsonResponse(jsonObject: Strin
     val gson = Gson()
     val type = object : TypeToken<T>() {}.type
 
-    val jsonResponse : JsonElement?
-
-    if (jsonObject.isEmpty()) {
-        jsonResponse = this.body()
+    val jsonResponse: JsonElement? = if (jsonObject.isEmpty()) {
+        this.body()
     } else {
-        jsonResponse = this.body()?.asJsonObject?.get(jsonObject)
+        this.body()?.asJsonObject?.get(jsonObject)
     }
-    val parsedResponse: T = gson.fromJson(jsonResponse, type)
-    return parsedResponse
+
+    return gson.fromJson(jsonResponse, type)
 
 }
 
-inline fun <reified T> Response<JsonElement>.parseResponse(jsonObject: String = ""): Result<T, Exception> {
-    if (this.isSuccessful) {
-        return Result.of {
-            this.parseJsonResponse<T>(jsonObject)
+inline fun <reified T> Response<JsonElement>.parseResponse(jsonObject: String = ""): Result<T, Exception> =
+        if (this.isSuccessful) {
+            Result.of {
+                this.parseJsonResponse<T>(jsonObject)
+            }
+        } else {
+            Result.Failure(getExceptionFromHttpErrorCode(this.code()))
         }
-    } else {
-        return Result.Failure(getExceptionFromHttpErrorCode(this.code()))
-    }
-}
 
-fun getExceptionFromHttpErrorCode(code: Int): Exception {
-    when (code) {
-        401 -> return NetworkException.UnauthorizedException()
-        500 -> return NetworkException.ServerException()
-        else -> return Exception()
-    }
+fun getExceptionFromHttpErrorCode(code: Int): Exception = when (code) {
+    401 -> NetworkException.UnauthorizedException()
+    500 -> NetworkException.ServerException()
+    else -> Exception()
 }

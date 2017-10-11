@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist timestamp="1507706299411"></Blacklist>
+  <Whitelist timestamp="1507706299411">
+    <ID>TooManyFunctions:Repository.kt$Repository&lt;Key, Value&gt;</ID>
+    <ID>EmptyClassBlock:ResponseExtensions.kt$&lt;no name provided&gt; : TypeToken</ID>
+    <ID>UnsafeCast:DataSource.kt$ReadableDataSource$possibleQuery.queryAll(parameters) as Result&lt;Collection&lt;Value&gt;, *&gt;</ID>
+    <ID>UnsafeCast:DataSource.kt$ReadableDataSource$possibleQuery.query(parameters) as Result&lt;Value, *&gt;</ID>
+    <ID>UnsafeCast:TvShowCacheDataSource.kt$TvShowCacheDataSource$possibleQuery.queryAll(parameters, items) as Result&lt;Collection&lt;TvShowDataEntity&gt;, *&gt;</ID>
+    <ID>UnsafeCallOnNullableType:GetTvShowByNameCacheQuery.kt$GetTvShowByNameCacheQuery$parameters!!</ID>
+    <ID>UnsafeCast:GetTvShowByNameCacheQuery.kt$GetTvShowByNameCacheQuery$queryable as HashMap&lt;String, TvShowDataEntity&gt;</ID>
+    <ID>UnsafeCast:GetTvShowByNameCacheQuery.kt$GetTvShowByNameCacheQuery$parameters!![GetTvShowByNameQuery.Parameters.NAME_QUERY] as String</ID>
+    <ID>ReturnCount:DiscoverActivity.kt$DiscoverActivity$private fun setUpSearchView(menu: Menu)</ID>
+    <ID>VariableMinLength:DetailActivity.kt$DetailActivity$val id = intent.extras.getInt(TV_SHOW_ID)</ID>
+    <ID>FunctionMaxLength:ActivityInjector.kt$ActivityInjector$@PerActivity @ContributesAndroidInjector(modules = arrayOf(DetailActivityModule::class)) abstract fun contributeDetailActivityInjector(): DetailActivity</ID>
+    <ID>FunctionMaxLength:ActivityInjector.kt$ActivityInjector$@PerActivity @ContributesAndroidInjector(modules = arrayOf(DiscoverActivityModule::class)) abstract fun contributeDiscoverActivityInjector(): DiscoverActivity</ID>
+    <ID>UnnecessaryAbstractClass:ActivityInjector.kt$ActivityInjector</ID>
+    <ID>FunctionMaxLength:Repository.kt$Repository$private fun getValueFromReadableDataSources(key: Key): Result&lt;Value, *&gt;</ID>
+    <ID>FunctionMaxLength:Repository.kt$Repository$private fun getValuesFromReadableDataSources(): Result&lt;Collection&lt;Value&gt;, *&gt;</ID>
+    <ID>MagicNumber:ResponseExtensions.kt$401</ID>
+    <ID>MagicNumber:ResponseExtensions.kt$500</ID>
+    <ID>FunctionMaxLength:DataModule.kt$DataModule$@Provides @Singleton fun providesTvShowReadableDataSource(tvShowApiDataSource: TvShowApiDataSource) : ReadableDataSource&lt;Int, TvShowDataEntity&gt;</ID>
+    <ID>FunctionMaxLength:DataModule.kt$DataModule$@Singleton @Provides @TvShowCacheQueries fun providesTvShowCacheDataSourceQuery(getTvShowByNameCacheQuery: GetTvShowByNameCacheQuery) : MutableSet&lt;Query&gt;</ID>
+    <ID>MagicNumber:DataModule.kt$DataModule$60000</ID>
+    <ID>ReturnCount:Result.kt$Result.Companion$infix inline fun &lt;Value&gt; of(executableFunction: () -&gt; Value?): Result&lt;Value, kotlin.Exception&gt;</ID>
+    <ID>FunctionNaming:Result.kt$Result.Companion$fun Failure()</ID>
+    <ID>FunctionMinLength:Result.kt$Result.Companion$infix inline fun &lt;Value&gt; of(executableFunction: () -&gt; Value?): Result&lt;Value, kotlin.Exception&gt;</ID>
+    <ID>ModifierOrder:Result.kt$Result.Companion$infix inline</ID>
+  </Whitelist>
+</SmellBaseline>

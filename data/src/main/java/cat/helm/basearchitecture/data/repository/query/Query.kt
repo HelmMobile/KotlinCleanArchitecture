@@ -7,11 +7,8 @@ import cat.helm.basearchitecture.Result
  */
 interface Query {
 
-    fun queryAll(parameters: HashMap<String, *>? = null, queryable: Any? = null): Result<Collection<*>, *> {
-        return Result.Failure()
-    }
-    fun query(parameters: HashMap<String, *>? = null, queryable: Any? = null): Result<*, *> {
-        return Result.Failure()
-    }
+    fun queryAll(parameters: HashMap<String, *>? = null, queryable: Any? = null): Result<Collection<*>, *> =
+            Result.Failure()
+    fun query(parameters: HashMap<String, *>? = null, queryable: Any? = null): Result<*, *> = Result.Failure()
 
 }

@@ -15,12 +15,12 @@ import kotlin.properties.Delegates
 /**
  * Created by Borja on 2/6/17.
  */
-class TvShowAdapter @Inject constructor(val discoverPresenter: DiscoverPresenter) : RecyclerView.Adapter<TvShowViewHolder>() {
+class TvShowAdapter @Inject constructor(private val discoverPresenter: DiscoverPresenter)
+    : RecyclerView.Adapter<TvShowViewHolder>() {
 
-    var tvShows: List<TvShow> by Delegates.observable(emptyList()) {
-        _, old, new->
-        autoNotify(old, new) {
-            old, new -> old.id == new.id
+    var tvShows: List<TvShow> by Delegates.observable(emptyList()) { _, old, new ->
+        autoNotify(old, new) { old, new ->
+            old.id == new.id
         }
     }
 

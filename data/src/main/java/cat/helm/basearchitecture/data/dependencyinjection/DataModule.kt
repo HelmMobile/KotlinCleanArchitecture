@@ -74,7 +74,8 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun providesTvShowReadableDataSource(tvShowApiDataSource: TvShowApiDataSource): ReadableDataSource<Int, TvShowDataEntity> = tvShowApiDataSource
+    fun providesTvShowReadableDataSource(tvShowApiDataSource: TvShowApiDataSource)
+            : ReadableDataSource<Int, TvShowDataEntity> = tvShowApiDataSource
 
     @Provides
     @Singleton
@@ -82,12 +83,14 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providesTvShowCacheDataSource(tvShowCacheDataSource: TvShowCacheDataSource): CacheDataSource<Int, TvShowDataEntity> = tvShowCacheDataSource
+    fun providesTvShowCacheDataSource(tvShowCacheDataSource: TvShowCacheDataSource)
+            : CacheDataSource<Int, TvShowDataEntity> = tvShowCacheDataSource
 
     @Singleton
     @Provides
     @TvShowCacheQueries
-    fun providesTvShowCacheDataSourceQuery(getTvShowByNameCacheQuery: GetTvShowByNameCacheQuery): MutableSet<Query> = mutableSetOf(getTvShowByNameCacheQuery)
+    fun providesTvShowCacheDataSourceQuery(getTvShowByNameCacheQuery: GetTvShowByNameCacheQuery)
+            : MutableSet<Query> = mutableSetOf(getTvShowByNameCacheQuery)
 
     @Provides
     @Singleton
@@ -102,3 +105,4 @@ class DataModule {
     }
 
 }
+

@@ -23,7 +23,7 @@ class DiscoverPresenter @Inject constructor(val view: DiscoverView,
             }
             result.failure {
                 exception ->
-                exceptionHandler.notifyException(view,exception)
+                exceptionHandler.notifyException(view, exception)
             }
         }
     }
@@ -40,5 +40,4 @@ class DiscoverPresenter @Inject constructor(val view: DiscoverView,
             }
         }
     }
-
 }

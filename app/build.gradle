@@ -53,22 +53,16 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support:recyclerview-v7:$support_version"
 
     compile project(path: ':domain')
     compile project(path: ':data')
 
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
     testCompile 'junit:junit:4.12'
 }
 kapt {
     generateStubs = true
 }
-repositories {
-    mavenCentral()
-    google()
-}
-
-
 
 build.dependsOn ':detekt'

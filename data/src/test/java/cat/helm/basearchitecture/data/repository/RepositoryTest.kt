@@ -16,12 +16,11 @@ import kotlin.test.assertTrue
  */
 class RepositoryTest {
 
-
     private lateinit var repository: Repository<String, String>
     private val cacheDataSource: CacheDataSource<String, String> = mock()
     private val secondCacheDataSource: CacheDataSource<String, String> = mock()
     private val readableDataSource: ReadableDataSource<String, String> = mock()
-    private val secondReadableDataSource: ReadableDataSource<String,String> = mock()
+    private val secondReadableDataSource: ReadableDataSource<String, String> = mock()
     private val writableDataSource: WritableDataSource<String, String> = mock()
 
     @Before
@@ -87,7 +86,7 @@ class RepositoryTest {
         verify(cacheDataSource).getByKey(any())
     }
 
-    @Test fun shouldBreakSearchIfCacheReturnsSuccessResult(){
+    @Test fun shouldBreakSearchIfCacheReturnsSuccessResult() {
 
         repository.cacheDataSources.add(secondCacheDataSource)
 
@@ -100,10 +99,9 @@ class RepositoryTest {
 
         verify(secondCacheDataSource, times(0)).getByKey(any())
 
-
     }
 
-    @Test fun shouldBreakSearchIfReadableReturnsSuccessResult(){
+    @Test fun shouldBreakSearchIfReadableReturnsSuccessResult() {
 
         repository.readableDataSources.add(readableDataSource)
 
@@ -114,7 +112,6 @@ class RepositoryTest {
         assertTrue { result is Result.Success }
 
         verify(secondReadableDataSource, times(0)).getByKey(any())
-
 
     }
 
@@ -183,7 +180,7 @@ class RepositoryTest {
 
     }
 
-    @Test fun shouldBreakSearchIfThereIsDataOnCache(){
+    @Test fun shouldBreakSearchIfThereIsDataOnCache() {
         repository.cacheDataSources.add(secondCacheDataSource)
         val returnList = ArrayList<String>()
         returnList.add("")
@@ -198,9 +195,8 @@ class RepositoryTest {
 
     }
 
-    @Test fun shouldBreakSearchIfThereIsDataOnReadable(){
+    @Test fun shouldBreakSearchIfThereIsDataOnReadable() {
         repository.readableDataSources.add(secondReadableDataSource)
-
 
         whenever(readableDataSource.getAll()).thenReturn(Result.Success(Collections.emptyList()))
         whenever(secondReadableDataSource.getAll()).thenReturn(Result.Failure())

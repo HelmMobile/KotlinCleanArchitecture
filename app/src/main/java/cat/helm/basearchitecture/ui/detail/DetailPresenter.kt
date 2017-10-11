@@ -23,7 +23,7 @@ class DetailPresenter @Inject constructor(val view: DetailView,
             result.failure {
                 exception ->
 
-                exceptionHandler.notifyException(view,exception)
+                exceptionHandler.notifyException(view, exception)
             }
         }
     }

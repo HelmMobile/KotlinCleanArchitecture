@@ -27,17 +27,12 @@ interface ReadableDataSource<Key, out Value> {
 
     val queries: MutableSet<Query>
 
-    fun getByKey(key: Key): Result<Value, *> {
-        return Result.Failure()
-    }
+    fun getByKey(key: Key): Result<Value, *> = Result.Failure()
 
-    fun getAll(): Result<Collection<Value>, *> {
-        return Result.Failure()
-    }
+    fun getAll(): Result<Collection<Value>, *> = Result.Failure()
 
     fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Collection<Value>, *> {
-        queries.forEach {
-            possibleQuery ->
+        queries.forEach { possibleQuery ->
             if (possibleQuery.implements(query)) {
                 return possibleQuery.queryAll(parameters) as Result<Collection<Value>, *>
             }
@@ -46,8 +41,7 @@ interface ReadableDataSource<Key, out Value> {
     }
 
     fun query(query: Class<*>, parameters: HashMap<String, *>? = null): Result<Value, *> {
-        queries.forEach {
-            possibleQuery ->
+        queries.forEach { possibleQuery ->
             if (possibleQuery.implements(query)) {
                 return possibleQuery.query(parameters) as Result<Value, *>
             }

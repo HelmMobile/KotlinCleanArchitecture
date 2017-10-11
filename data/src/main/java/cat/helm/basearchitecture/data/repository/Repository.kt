@@ -125,7 +125,8 @@ open class Repository<Key, Value> {
         return result
     }
 
-    fun query(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Value, *> {
+    fun query(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL)
+            : Result<Value, *> {
         var result: Result<Value, *> = Result.Failure()
 
         if (policy.useCache()) {
@@ -157,7 +158,8 @@ open class Repository<Key, Value> {
         return result
     }
 
-    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL): Result<Collection<Value>, *> {
+    fun queryAll(query: Class<*>, parameters: HashMap<String, *>? = null, policy: ReadPolicy = ReadPolicy.READ_ALL)
+            : Result<Collection<Value>, *> {
         var result: Result<Collection<Value>, *> = Result.Failure()
         if (policy.useCache()) {
             for (cacheDataSource in cacheDataSources) {

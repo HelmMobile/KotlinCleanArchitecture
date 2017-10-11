@@ -14,7 +14,6 @@ import javax.inject.Inject
 @Reusable
 class SimpleExceptionHandler @Inject constructor(@ApplicationContext val context: Context) : ExceptionHandler {
 
-
     override fun<T: BaseView> notifyException(view: T, exception: Exception?) {
         when (exception) {
 

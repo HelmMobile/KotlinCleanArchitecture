@@ -11,7 +11,7 @@ import javax.inject.Inject
 class GetTvShowByNameCacheQuery @Inject constructor() : GetTvShowByNameQuery {
 
     override fun queryAll(parameters: HashMap<String, *>?, queryable: Any?): Result<Collection<*>, *> {
-        val cache = queryable as java.util.HashMap<String, TvShowDataEntity>
+        val cache = queryable as HashMap<String, TvShowDataEntity>
         val queryResult = ArrayList<TvShowDataEntity>()
         for ((_, key) in cache) {
             if (key.name.contains(parameters!![GetTvShowByNameQuery.Parameters.NAME_QUERY] as String, true)) {

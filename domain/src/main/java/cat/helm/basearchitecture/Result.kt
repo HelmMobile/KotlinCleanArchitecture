@@ -10,7 +10,8 @@ sealed class Result<out Value, out Exception : kotlin.Exception> {
 
     class Failure<out Exception : kotlin.Exception>(val exception: Exception) : Result<Nothing, Exception>()
 
-    inline fun <Return> fold(successPathFunction: (Value) -> Return, failurePathFunction: (Exception) -> Return): Return = when (this) {
+    inline fun <Return> fold(successPathFunction: (Value) -> Return, failurePathFunction: (Exception) -> Return)
+            : Return = when (this) {
         is Success -> successPathFunction(value)
         is Failure -> failurePathFunction(exception)
     }
@@ -30,7 +31,9 @@ sealed class Result<out Value, out Exception : kotlin.Exception> {
                 is Failure -> Failure(exception)
             }
 
-    fun <Value, NewValue, Exception : kotlin.Exception> Result<Value, Exception>.flatMap(mapFunction: (Value) -> Result<NewValue, Exception>): Result<NewValue, Exception> {
+    fun <Value, NewValue, Exception : kotlin.Exception>
+            Result<Value, Exception>.flatMap(mapFunction: (Value) -> Result<NewValue, Exception>)
+            : Result<NewValue, Exception> {
 
        return fold({ mapFunction(it) }, { Result.Failure(it) })
     }

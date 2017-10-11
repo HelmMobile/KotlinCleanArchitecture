@@ -29,5 +29,4 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
-
 }

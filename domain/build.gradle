@@ -13,25 +13,17 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     compile "com.google.dagger:dagger:$dagger_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.1'
+
+
 }
 kapt {
     generateStubs = true
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
-buildscript {
-    ext.kotlin_version = '1.1.51'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-repositories {
-    mavenCentral()
-}
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
 }

@@ -13,10 +13,11 @@ repositories {
         classpath = configurations.detekt
         def input = "$project.projectDir.absolutePath"
         def config = "$project.projectDir/detekt.yml"
+        def baseline = "$project.projectDir.absolutePath/reports/baseline.xml"
         def reports = "$project.projectDir.absolutePath/reports/"
         def filters = ".*test.*"
         def rulesets = ""
-        def params = ['-p', input, '-c', config, '-f', filters, '-r', rulesets, '-o', '-rp', reports]
+        def params = ['-i', input, '-c', config, '-f', filters,'-o', reports,'-b', baseline]
         args(params)
     }
 
@@ -28,14 +29,14 @@ repositories {
         def config = "$project.projectDir/detekt.yml"
         def reports = "$project.projectDir.absolutePath/reports/"
         def filters = ".*test.*"
-        def rulesets = ""
-        def params = ['-p', input, '-c', config, '-f', filters, '-r', rulesets, '-o', '-rp', reports, '--baseline']
+        def baseline = "$project.projectDir.absolutePath/reports/baseline.xml"
+        def params = ['-i', input, '-c', config, '-f', filters, '-o', reports, '-b', baseline, '-cb']
         args(params)
     }
 
     dependencies {
 
-        detekt 'io.gitlab.arturbosch.detekt:detekt-cli:1.0.0.M10.1'
-        detekt 'io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0.M10.1'
+        detekt 'io.gitlab.arturbosch.detekt:detekt-cli:1.0.0.RC4-3'
+        detekt 'io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0.RC4-3'
     }
 }

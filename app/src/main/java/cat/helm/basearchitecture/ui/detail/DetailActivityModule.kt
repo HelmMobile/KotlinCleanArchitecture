@@ -10,8 +10,5 @@ import dagger.Provides
 class DetailActivityModule {
 
     @Provides
-    internal fun provideDetailView(detailActivity: DetailActivity): DetailView {
-        return detailActivity
-    }
-
+    internal fun provideDetailView(detailActivity: DetailActivity): DetailView = detailActivity
 }

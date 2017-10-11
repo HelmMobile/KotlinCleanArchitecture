@@ -26,7 +26,6 @@ class DetailActivity : BaseActivity(), DetailView {
 
     override fun onRequestLayout(): Int = R.layout.activity_detail
 
-
     override fun onViewLoaded() {
         val id = intent.extras.getInt(TV_SHOW_ID)
         presenter.onStart(id)

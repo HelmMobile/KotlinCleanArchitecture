@@ -9,8 +9,5 @@ import dagger.Provides
 @Module
 class DiscoverActivityModule {
     @Provides
-    internal fun provideDiscoverView(discoverActivity: DiscoverActivity): DiscoverView {
-        return discoverActivity
-    }
-
+    internal fun provideDiscoverView(discoverActivity: DiscoverActivity): DiscoverView = discoverActivity
 }

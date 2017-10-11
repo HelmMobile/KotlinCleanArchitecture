@@ -12,7 +12,8 @@ import javax.inject.Inject
 /**
  * Created by Borja on 6/6/17.
  */
-class TvShowCacheDataSource @Inject constructor(timeProvider: TimeProvider, ttlMillis: Long, @TvShowCacheQueries override val queries: MutableSet<Query>)
+class TvShowCacheDataSource @Inject constructor(timeProvider: TimeProvider, ttlMillis: Long,
+                                                @TvShowCacheQueries override val queries: MutableSet<Query>)
     : InMemoryCacheDataSource<Int, TvShowDataEntity>(timeProvider, ttlMillis, queries) {
 
     override fun queryAll(query: Class<*>, parameters: HashMap<String, *>?): Result<Collection<TvShowDataEntity>, *> {

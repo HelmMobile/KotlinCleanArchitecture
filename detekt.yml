@@ -17,6 +17,8 @@ potential-bugs:
     active: true
   ExplicitGarbageCollectionCall:
     active: true
+  LateinitUsage:
+    active: false
 
 exceptions:
   active: true
@@ -91,6 +93,7 @@ formatting:
   ExpressionBodySyntaxLineBreaks:
     active: false
     autoCorrect: true
+
 
 style:
   active: true

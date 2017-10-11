@@ -22,5 +22,4 @@ abstract class ActivityInjector {
     @ContributesAndroidInjector(modules = arrayOf(DiscoverActivityModule::class))
     abstract fun contributeDiscoverActivityInjector(): DiscoverActivity
 
-
 }

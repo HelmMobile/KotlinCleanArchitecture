@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import cat.helm.basearchitecture.R
+import cat.helm.basearchitecture.R.id.tvShowList
 import cat.helm.basearchitecture.model.TvShow
 import cat.helm.basearchitecture.ui.base.BaseActivity
 import cat.helm.basearchitecture.ui.detail.DetailActivity
@@ -20,7 +21,6 @@ class DiscoverActivity : BaseActivity(), DiscoverView {
     @Inject lateinit var adapter: TvShowAdapter
 
     override fun onRequestLayout(): Int = R.layout.activity_discover
-
 
     override fun onViewLoaded() {
         presenter.onStart()
@@ -37,33 +37,35 @@ class DiscoverActivity : BaseActivity(), DiscoverView {
     }
 
     private fun setUpSearchView(menu: Menu) {
-        val searchView = MenuItemCompat.getActionView(menu.findItem(R.id.search)) as SearchView
-        searchView.setIconifiedByDefault(false)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                presenter.onSearchTextSubmitted(query)
-                return true
-            }
+        val searchView = MenuItemCompat.getActionView(menu.findItem(R.id.search)) as? SearchView
+        searchView?.apply {
+            setIconifiedByDefault(false)
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    presenter.onSearchTextSubmitted(query)
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                presenter.onSearchTextSubmitted(newText)
-                return true
-            }
+                override fun onQueryTextChange(newText: String): Boolean {
+                    presenter.onSearchTextSubmitted(newText)
+                    return true
+                }
 
-        })
+            })
+            MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search),
+                    object : MenuItemCompat.OnActionExpandListener {
+                        override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                            searchView.requestFocus()
+                            showSoftKeyboard()
+                            return true
+                        }
 
-        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search), object : MenuItemCompat.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                searchView.requestFocus()
-                showSoftKeyboard()
-                return true
-            }
-
-            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
-                hideSoftKeyboard()
-                return true
-            }
-        })
+                        override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                            hideSoftKeyboard()
+                            return true
+                        }
+                    })
+        }
     }
 
     override fun displayTvShow(tvShows: List<TvShow>) {
@@ -77,14 +79,15 @@ class DiscoverActivity : BaseActivity(), DiscoverView {
     private fun hideSoftKeyboard() {
         val view = currentFocus
         if (view != null) {
-            (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0)
+            (getSystemService(Context.INPUT_METHOD_SERVICE)
+                    as? InputMethodManager)?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
     private fun showSoftKeyboard() {
         val view = currentFocus
         if (view != null) {
-            (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).showSoftInput(view, 0)
+            (getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager)?.showSoftInput(view, 0)
         }
     }
 }

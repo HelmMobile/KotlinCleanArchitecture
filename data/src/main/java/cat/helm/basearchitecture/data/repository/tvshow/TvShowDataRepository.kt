@@ -23,7 +23,8 @@ class TvShowDataRepository @Inject constructor(tvShowApiDataSource: ReadableData
         readableDataSources.add(tvShowApiDataSource)
     }
 
-    override fun getAllPopularTvShows(): Result<List<TvShow>, *> = getAll().map { it.map(TvShowDataEntity::mapToTvShow) }
+    override fun getAllPopularTvShows(): Result<List<TvShow>, *>
+            = getAll().map { it.map(TvShowDataEntity::mapToTvShow) }
 
     override fun getTvShowById(id: Int): Result<TvShow, *> = getByKey(id).map(TvShowDataEntity::mapToTvShow)
 
