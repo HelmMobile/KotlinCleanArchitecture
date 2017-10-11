@@ -10,5 +10,4 @@ class MainPresenter @Inject constructor(val view: MainView) {
     fun pastel() {
 
     }
-
 }

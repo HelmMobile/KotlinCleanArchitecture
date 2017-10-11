@@ -14,5 +14,4 @@ abstract class ActivityInjector {
 
     @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
     abstract fun contributeMainActivityInjector(): MainActivity
-
 }

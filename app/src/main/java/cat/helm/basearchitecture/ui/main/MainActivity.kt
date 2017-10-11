@@ -10,10 +10,9 @@ class MainActivity : BaseActivity(), MainView {
 
     override fun onRequestLayout(): Int = R.layout.activity_main
 
-
     override fun onViewLoaded() {
         presenter.pastel()
     }
 
-
 }
+

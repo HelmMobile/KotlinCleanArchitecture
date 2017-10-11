@@ -13,9 +13,4 @@ class MainActivityModule {
     internal fun provideMainView(mainActivity: MainActivity): MainView {
         return mainActivity
     }
-
-    /*@Provides
-    MainPresenter provideMainPresenter(MainView mainView, ApiService apiService){
-        return new MainPresenterImpl(mainView, apiService);
-    }*/
 }

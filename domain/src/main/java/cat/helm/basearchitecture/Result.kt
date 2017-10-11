@@ -31,7 +31,6 @@ sealed class Result<out Value, out Exception : kotlin.Exception> {
                 is Failure -> Failure(exception)
             }
 
-
     companion object {
 
         fun Failure() = Failure(Exception())

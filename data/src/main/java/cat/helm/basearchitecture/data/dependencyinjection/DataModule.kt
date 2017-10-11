@@ -1,7 +1,7 @@
 package cat.helm.basearchitecture.data.dependencyinjection
 
-import cat.helm.basearchitecture.data.repository.query.Query
 import cat.helm.basearchitecture.data.dependencyinjection.qualifier.DefaultQueries
+import cat.helm.basearchitecture.data.repository.query.Query
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ElementsIntoSet
@@ -17,7 +17,6 @@ class DataModule {
     @ElementsIntoSet
     @Singleton
     @DefaultQueries
-    fun provideDefaultQueries(): MutableSet<Query> = return LinkedHashSet()
-
+    fun provideDefaultQueries(): MutableSet<Query> = LinkedHashSet()
 
 }

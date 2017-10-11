@@ -8,7 +8,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-
 /**
  * Created by Borja on 21/12/16.
  */
