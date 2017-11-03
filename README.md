@@ -11,8 +11,8 @@ As a result of this evolution we've built an architecture to start each project 
 
 ## Motivation
 
-We've been working with kotlin since the last year with this great [Book](https://leanpub.com/kotlin-for-android-developers) of [@lime_cl](https://twitter.com/lime_cl).
-Since the first moment we've been greatly impressed with the language and his easy learn curve.
+We've been working and learning with kotlin since the last year using [this great book](https://leanpub.com/kotlin-for-android-developers) by [@lime_cl](https://twitter.com/lime_cl).
+Since the first moment we've been greatly impressed with the language and its gradual learning curve.
 With our first attempts we've seen that Koltin is a huge improvement over Java so we decided to start developing our new projects in Kotlin.
 
 So with the Google announcement of Kotlin as a first party language in the SO, we decided to migrate our codebase to kotlin improving it with the Kotlin Syntax Sugar.
@@ -34,7 +34,7 @@ In this repo you'll find an example app to show our way to architect android pro
 
 ## Special Thanks
 We know we've not been very active in the android community but we've been aware of it.
-Proof of it is the following list of projects and posts that has inspired this project:
+Proof of it is the following list of projects and posts that have inspired this project:
 
 + https://github.com/android10/Android-CleanArchitecture
 + https://github.com/Karumi/Rosie
@@ -42,7 +42,8 @@ Proof of it is the following list of projects and posts that has inspired this p
 + https://es.slideshare.net/jmpereirag/limpiando-espero-la-arquitectura-que-yo-quiero
 + https://www.47deg.com/presentations/2017/02/18/Functional-error-handling/
 
-We want to thank all of them to share their knowledge to the community and we want to contribute to this sharing with this project.
+As a gesture of appreciation, we are proud to share our clean architecture approach with a comunity that has shared so much with us.
+Thank you all.
 
 ## Todo's
 
