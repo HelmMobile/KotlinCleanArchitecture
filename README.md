@@ -45,9 +45,9 @@ Proof of it is the following list of projects and posts that have inspired this 
 As a gesture of appreciation, we are proud to share our clean architecture approach with a comunity that has shared so much with us.
 Thank you all.
 
-## Todo's
+## Android Studio plugin
 
-+ New Branch with boilerplate necessary to start from scratch a new project. 
+We are aware that working with this architecture can lead into an overwhelming amount of boilerplate. So we have create a [plugin](https://github.com/HelmMobile/Kotlin-Clean-Architecture-plugin-for-Android-Studio) to deal with it.
 
 License
 -------
