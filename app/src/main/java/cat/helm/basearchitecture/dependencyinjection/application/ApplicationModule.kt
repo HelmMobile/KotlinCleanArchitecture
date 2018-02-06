@@ -2,10 +2,10 @@ package cat.helm.basearchitecture.dependencyinjection.application
 
 import android.app.Application
 import android.content.Context
-import cat.helm.basearchitecture.Android
 import cat.helm.basearchitecture.data.dependencyinjection.qualifier.ApplicationContext
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.experimental.android.UI
 import javax.inject.Singleton
 import kotlin.coroutines.experimental.AbstractCoroutineContextElement
 
@@ -23,6 +23,6 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    internal fun providesContinuation(): AbstractCoroutineContextElement = Android
+    internal fun providesContinuation(): AbstractCoroutineContextElement = UI
 
 }

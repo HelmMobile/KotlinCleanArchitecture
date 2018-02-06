@@ -16,13 +16,14 @@ abstract class Interactor<out SuccessValue, in Parameters> {
 
 
     fun execute(parameters: Parameters,
-                delegate: (result: Result<SuccessValue, *>) -> Unit) =
-            launch(continuation) {
-                val result = async {
-                    run(parameters)
-                }
-                delegate(result.await())
+                delegate: (result: Result<SuccessValue, *>) -> Unit) {
+       launch(continuation) {
+            val result = async {
+                run(parameters)
             }
+            delegate(result.await())
+        }
+    }
 
 
     abstract fun run(params: Parameters): Result<SuccessValue, *>

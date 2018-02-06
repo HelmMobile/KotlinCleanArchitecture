@@ -24,4 +24,6 @@ class AndroidThreadContinuation<T>(private val continuation: Continuation<T>): C
 object Android : AbstractCoroutineContextElement(ContinuationInterceptor), ContinuationInterceptor {
     override fun <T> interceptContinuation(continuation: Continuation<T>): Continuation<T> =
             AndroidThreadContinuation(continuation)
+
+
 }
